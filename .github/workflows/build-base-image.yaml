@@ -5,8 +5,8 @@ on:
     branches:
     - main
     paths:
-      - "./app/*"
-      - ./Dockerfile
+    - "./app/**"
+    - "./Dockerfile"
 
 env:
   TAG: $(echo ${GITHUB_SHA} | cut -c1-8)
