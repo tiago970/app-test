@@ -3,10 +3,11 @@ name: "Build and publish docker image"
 on: 
   push:
     branches:
-    - main
+      - main
     paths:
-    - "./app/**"
-    - "./Dockerfile"
+      - './app/**'
+      - './Dockerfile'
+  workflow_dispatch:
 
 env:
   TAG: $(echo ${GITHUB_SHA} | cut -c1-8)
