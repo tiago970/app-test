@@ -1,4 +1,4 @@
-name: "Build and publish docker image"
+name: "Build image"
 
 on: 
   push:
@@ -19,7 +19,11 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    
+
+    - name: hash commit
+      run: |
+        export TAG=$(echo ${{ GITHUB_SHA | cut -c1-8} )
+
     - name: Login to GitHub Container Registry
       uses: docker/login-action@v1
       with:
@@ -32,4 +36,4 @@ jobs:
       with:
         context: .
         push: true
-        tags: ${{ env.REGISTRY }}/${{ github.repository }}:latest
+        tags: ${{ env.REGISTRY }}/${{ github.repository }}:latest, ${{ env.REGISTRY }}/${{ github.repository }}:$TAG
