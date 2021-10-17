@@ -9,14 +9,13 @@ on:
       - './Dockerfile'
   workflow_dispatch:
 
-env:
-  REGISTRY: ghcr.io
-  SHORT_COMMIT: ${GITHUB_SHA::10}
-
 jobs:
   build-publish:
     runs-on: ubuntu-latest
-
+    env:
+      REGISTRY: ghcr.io
+      SHORT_COMMIT: ${GITHUB_SHA::10}
+    
     steps:
     - name: Checkout
       uses: actions/checkout@v2
