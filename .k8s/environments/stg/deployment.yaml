@@ -14,10 +14,10 @@ spec:
     spec:
       containers:
         - name: app-test
-          image: ghcr.io/tiago970/app-test:47f6d56bd3
+          image: nginx
           resources:
             limits:
               memory: "128Mi"
               cpu: "500m"
           ports:
-            - containerPort: 5000
+            - containerPort: 80
