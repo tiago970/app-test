@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: app-test
-          image: ghcr.io/tiago970/app-test:latest
+          image: ghcr.io/tiago970/app-test:47f6d56bd3
           resources:
             limits:
               memory: "128Mi"
