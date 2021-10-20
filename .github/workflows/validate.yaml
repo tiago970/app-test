@@ -2,6 +2,9 @@ name: "yaml lint"
 
 on: 
   push:
+    paths:
+      - '**.yml'
+      - '**.yaml'
 
 jobs:
   lintAllyamls:
@@ -12,7 +15,3 @@ jobs:
 
       - name: lint
         uses: ibiqlik/action-yamllint@v3
-        with:
-          file_or_dir: | 
-            *.yaml 
-            *.yml
