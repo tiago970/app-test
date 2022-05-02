@@ -13,7 +13,7 @@ spec:
         app: app-test
     spec:
       containers:
-        - name: app-test
+        - name: web
           image: nginx
           resources:
             limits:
@@ -21,3 +21,27 @@ spec:
               cpu: "500m"
           ports:
             - containerPort: 80
+          volumeMounts:
+            - name: nginx-conf
+              mountPath: /etc/nginx/conf.d/app.conf
+              subPath: app.conf
+            - name: nginx-conf
+              mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
+        - name: app
+          image: ghcr.io/tiago970/app-test:80fe3b5d73
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+      imagePullSecrets:
+        - name: regcred
+      volumes:
+        - name: nginx-conf
+          configMap:
+            name: nginx-conf
+            items:
+              - key: nginx-conf
+                path: nginx.conf
+              - key: app-conf
+                path: app.conf
